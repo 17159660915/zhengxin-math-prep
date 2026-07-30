@@ -49,20 +49,6 @@
     });
   }
 
-  function renderMath(container) {
-    if (typeof renderMathInElement === 'function') {
-      renderMathInElement(container, {
-        delimiters: [
-          { left: '$$', right: '$$', display: true },
-          { left: '$', right: '$', display: false },
-          { left: '\\(', right: '\\)', display: false },
-          { left: '\\[', right: '\\]', display: true }
-        ],
-        throwOnError: false
-      });
-    }
-  }
-
   function setupModuleSections(container) {
     container.querySelectorAll('h2').forEach(function (h2) {
       var text = h2.textContent;
@@ -196,7 +182,6 @@
           await nextTick();
           var container = document.querySelector('.markdown-body');
           if (container) {
-            renderMath(container);
             setupModuleSections(container);
             var wikiLinks = container.querySelectorAll('.wiki-link');
             wikiLinks.forEach(function (link) {
