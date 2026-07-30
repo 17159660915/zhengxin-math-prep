@@ -460,40 +460,54 @@ body {
 
 .wiki-link:hover { opacity: 0.7; }
 
-/* ---- 折叠引用块 ---- */
-.collapsible-quote {
-  margin: 14px 0;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
+/* ---- 模块化标题：知识点 / 重点 / 易错点 / 例题 ---- */
+.markdown-body h2.section-knowledge {
+  color: #2c6fb0;
+  border-bottom: 2px solid #2c6fb0;
+  padding-bottom: 6px;
 }
 
-.collapsible-header {
-  padding: 10px 16px;
-  background: var(--bg-sidebar);
-  cursor: pointer;
-  font-size: 0.85rem;
-  color: var(--text-light);
-  user-select: none;
-  transition: background 0.15s;
+.markdown-body h2.section-key {
+  color: #c0392b;
+  border-bottom: 2px solid #c0392b;
+  padding-bottom: 6px;
 }
 
-.collapsible-header:hover { background: var(--bg-hover); }
-
-.toggle-hint {
-  float: right;
-  color: var(--text-muted);
-  font-size: 0.8rem;
+.markdown-body h2.section-warn {
+  color: #d68910;
+  border-bottom: 2px solid #d68910;
+  padding-bottom: 6px;
 }
 
-.collapsible-body { padding: 0; }
-
-.collapsible-body blockquote {
-  border-radius: 0;
-  margin: 0;
-  border-left: none;
-  border-top: 1px solid var(--border);
+.markdown-body h2.section-example {
+  color: #1e8449;
+  border-bottom: 2px solid #1e8449;
+  padding-bottom: 6px;
 }
+
+[data-theme="dark"] .markdown-body h2.section-knowledge { color: #5dade2; border-color: #5dade2; }
+[data-theme="dark"] .markdown-body h2.section-key { color: #ec7063; border-color: #ec7063; }
+[data-theme="dark"] .markdown-body h2.section-warn { color: #f5b041; border-color: #f5b041; }
+[data-theme="dark"] .markdown-body h2.section-example { color: #52be80; border-color: #52be80; }
+
+/* 易错点中的 ❌/✅ 引用块 */
+.markdown-body h2.section-warn + * blockquote,
+.markdown-body h2.section-warn ~ blockquote {
+  border-left: 4px solid #f39c12;
+  background: #fef9e7;
+  border-radius: 0 8px 8px 0;
+}
+
+[data-theme="dark"] .markdown-body h2.section-warn ~ blockquote { background: #3a3520; }
+
+/* 例题中的引用块 */
+.markdown-body h2.section-example ~ blockquote {
+  border-left: 4px solid #3498db;
+  background: #ebf5fb;
+  border-radius: 0 8px 8px 0;
+}
+
+[data-theme="dark"] .markdown-body h2.section-example ~ blockquote { background: #1e2d3a; }
 
 /* ---- KaTeX 公式 ---- */
 .markdown-body .katex { font-size: 1.1em; }

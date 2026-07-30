@@ -47,30 +47,27 @@
             <span class="grade-count">{{ grade.chapters.length }}章</span>
           </div>
           <div class="nav-chapters" v-show="expandedGrades.includes(gKey)">
-            <div
-              class="nav-chapter"
-              v-for="chapter in grade.chapters"
-              :key="chapter.id"
-              :class="{ active: expandedChapters.includes(chapter.id) }"
-              @click="toggleChapter(chapter.id)"
-            >
-              <span class="nav-arrow">{{ expandedChapters.includes(chapter.id) ? '▼' : '▶' }}</span>
-              {{ chapter.title }}
-              <span class="semester-tag">{{ chapter.semester }}</span>
-            </div>
-            <div class="nav-topics" v-if="expandedChapters.length">
-              <template v-for="chapter in grade.chapters" :key="'t-' + chapter.id">
+            <div class="nav-chapter-block" v-for="chapter in grade.chapters" :key="chapter.id">
+              <div
+                class="nav-chapter"
+                :class="{ active: expandedChapters.includes(chapter.id) }"
+                @click="toggleChapter(chapter.id)"
+              >
+                <span class="nav-arrow">{{ expandedChapters.includes(chapter.id) ? '▼' : '▶' }}</span>
+                {{ chapter.title }}
+                <span class="semester-tag">{{ chapter.semester }}</span>
+              </div>
+              <div class="nav-topics" v-show="expandedChapters.includes(chapter.id)">
                 <div
                   class="nav-topic"
                   v-for="topic in chapter.topics"
-                  v-show="expandedChapters.includes(chapter.id)"
                   :key="topic.id"
                   :class="{ active: currentPath === topic.file }"
                   @click="loadLesson(topic.file)"
                 >
                   {{ topic.title }}
                 </div>
-              </template>
+              </div>
             </div>
           </div>
         </div>

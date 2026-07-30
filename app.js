@@ -63,34 +63,17 @@
     }
   }
 
-  function setupCollapsibleQuotes(container) {
-    var blockquotes = container.querySelectorAll('blockquote');
-    blockquotes.forEach(function (bq) {
-      var text = bq.textContent.trim();
-      if (text.indexOf('来源') === 0 || text.indexOf('原文摘录') !== -1) {
-        var wrapper = document.createElement('div');
-        wrapper.className = 'collapsible-quote';
-        var header = document.createElement('div');
-        header.className = 'collapsible-header';
-        header.innerHTML = '📄 ' + text.split('\n')[0].slice(0, 50) + '… <span class="toggle-hint">点击展开</span>';
-        var body = document.createElement('div');
-        body.className = 'collapsible-body';
-        body.style.display = 'none';
-        bq.parentNode.insertBefore(wrapper, bq);
-        body.appendChild(bq);
-        wrapper.appendChild(header);
-        wrapper.appendChild(body);
-        header.addEventListener('click', function () {
-          if (body.style.display === 'none') {
-            body.style.display = 'block';
-            header.querySelector('.toggle-hint').textContent = '点击收起';
-            wrapper.classList.add('open');
-          } else {
-            body.style.display = 'none';
-            header.querySelector('.toggle-hint').textContent = '点击展开';
-            wrapper.classList.remove('open');
-          }
-        });
+  function setupModuleSections(container) {
+    container.querySelectorAll('h2').forEach(function (h2) {
+      var text = h2.textContent;
+      if (text.indexOf('📖') !== -1 || text.indexOf('知识点') !== -1) {
+        h2.classList.add('section-knowledge');
+      } else if (text.indexOf('⭐') !== -1 || text.indexOf('重点') !== -1) {
+        h2.classList.add('section-key');
+      } else if (text.indexOf('⚠️') !== -1 || text.indexOf('易错') !== -1) {
+        h2.classList.add('section-warn');
+      } else if (text.indexOf('📝') !== -1 || text.indexOf('例题') !== -1) {
+        h2.classList.add('section-example');
       }
     });
   }
@@ -214,7 +197,7 @@
           var container = document.querySelector('.markdown-body');
           if (container) {
             renderMath(container);
-            setupCollapsibleQuotes(container);
+            setupModuleSections(container);
             var wikiLinks = container.querySelectorAll('.wiki-link');
             wikiLinks.forEach(function (link) {
               link.addEventListener('click', function (e) {
