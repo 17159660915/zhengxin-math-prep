@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>正心童学·初中数学备课系统</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.global.prod.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked@13.0.3/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- 顶部栏 -->
+    <header class="top-bar">
+      <div class="logo">
+        <span class="logo-icon">🦐</span>
+        <div>
+          <h1 class="logo-text">正心童学·初中数学备课系统</h1>
+          <p class="subtitle">人教版 7-9 年级 · 自主学习 · 以舍为得</p>
+        </div>
+      </div>
+      <div class="search-box">
+        <input
+          type="text"
+          v-model="searchQuery"
+          placeholder="搜索年级 / 章节 / 知识点…"
+        >
+        <span class="search-icon">🔍</span>
+      </div>
+      <button class="theme-toggle" @click="toggleTheme" :title="isDark ? '切换亮色' : '切换暗色'">
+        {{ isDark ? '☀️' : '🌙' }}
+      </button>
+    </header>
+
+    <!-- 主体布局 -->
+    <div class="main-layout">
+      <!-- 左侧导航 -->
+      <nav class="sidebar">
+        <div class="nav-section" v-for="(grade, gKey) in filteredGrades" :key="gKey">
+          <div
+            class="nav-grade"
+            :class="{ active: expandedGrades.includes(gKey) }"
+            @click="toggleGrade(gKey)"
+          >
+            <span class="nav-arrow">{{ expandedGrades.includes(gKey) ? '▼' : '▶' }}</span>
+            {{ grade.label }}
+          </div>
+          <div class="nav-chapters" v-show="expandedGrades.includes(gKey)">
+            <div
+              class="nav-chapter"
+              v-for="chapter in grade.chapters"
+              :key="chapter.id"
+              :class="{ active: expandedChapters.includes(chapter.id) }"
+              @click="toggleChapter(chapter.id)"
+            >
+              <span class="nav-arrow">{{ expandedChapters.includes(chapter.id) ? '▼' : '▶' }}</span>
+              {{ chapter.title }}
+              <span class="status-badge" v-if="chapter.status === '待核实'">⚠️</span>
+            </div>
+            <div class="nav-topics" v-if="expandedChapters.length">
+              <template v-for="chapter in grade.chapters" :key="'t-' + chapter.id">
+                <div
+                  class="nav-topic"
+                  v-for="topic in chapter.topics"
+                  v-show="expandedChapters.includes(chapter.id)"
+                  :key="topic.id"
+                  :class="{ active: currentPath === topic.file }"
+                  @click="loadLesson(topic.file)"
+                >
+                  {{ topic.title }}
+                  <span class="status-tag" :class="topic.status">{{ statusLabel(topic.status) }}</span>
+                </div>
+              </template>
+            </div>
+            <div class="nav-empty" v-if="!grade.chapters || !grade.chapters.length">
+              <span>📋 章节目录待核实</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 教法骨架 -->
+        <div class="nav-section nav-methods">
+          <div
+            class="nav-grade"
+            :class="{ active: showMethods }"
+            @click="showMethods = !showMethods"
+          >
+            <span class="nav-arrow">{{ showMethods ? '▼' : '▶' }}</span>
+            📚 教法骨架
+          </div>
+          <div class="nav-chapters" v-show="showMethods">
+            <div
+              class="nav-topic"
+              v-for="m in methodFiles"
+              :key="m.file"
+              :class="{ active: currentPath === m.file }"
+              @click="loadLesson(m.file)"
+            >
+              {{ m.title }}
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- 右侧内容区 -->
+      <main class="content">
+        <!-- 欢迎页 -->
+        <div class="welcome" v-if="!currentLesson && !loading && !error">
+          <div class="welcome-logo">🦐</div>
+          <h1>正心童学·初中数学备课系统</h1>
+          <p class="welcome-sub">人教版 7-9 年级 · 知识点教案库</p>
+          <div class="welcome-cards">
+            <div class="card" @click="goGrade('初一')">
+              <span class="card-icon">📖</span>
+              <span>初一数学</span>
+            </div>
+            <div class="card" @click="goGrade('初二')">
+              <span class="card-icon">📐</span>
+              <span>初二数学</span>
+            </div>
+            <div class="card" @click="goGrade('初三')">
+              <span class="card-icon">📊</span>
+              <span>初三数学</span>
+            </div>
+            <div class="card" @click="showMethods = true; goMethod()">
+              <span class="card-icon">📚</span>
+              <span>教法骨架</span>
+            </div>
+          </div>
+          <div class="notice" v-if="chaptersStatus">
+            ⚠️ {{ chaptersStatus }}
+          </div>
+        </div>
+
+        <!-- 加载中 -->
+        <div class="loading" v-if="loading">
+          <span class="spinner"></span> 正在加载教案…
+        </div>
+
+        <!-- 错误 -->
+        <div class="error" v-if="error">
+          <p>❌ {{ error }}</p>
+          <button @click="retryLoad">重试</button>
+        </div>
+
+        <!-- 教案内容 -->
+        <article class="lesson" v-if="currentLesson && !loading && !error">
+          <!-- frontmatter 元信息条 -->
+          <div class="meta-bar" v-if="metaDisplay && Object.keys(metaDisplay).length">
+            <span class="meta-chip" v-for="(value, key) in metaDisplay" :key="key">
+              <strong>{{ metaLabels[key] || key }}：</strong>{{ value }}
+            </span>
+          </div>
+          <!-- Markdown 渲染区 -->
+          <div class="markdown-body" v-html="renderedHtml"></div>
+        </article>
+      </main>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
