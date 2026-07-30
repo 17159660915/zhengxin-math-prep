@@ -1,4 +1,4 @@
-﻿/* 正心童学·初中数学备课系统 — app.js
+﻿/* 正心童学·初中数学知识点汇总 — app.js
  * Vue3 + marked + KaTeX 单页应用
  * 无构建步骤，纯 CDN
  */
@@ -13,16 +13,10 @@
   var onMounted = Vue.onMounted;
   var nextTick = Vue.nextTick;
 
-  // ---- marked 配置 ----
-  marked.setOptions({
-    breaks: true,
-    gfm: true
-  });
+  marked.setOptions({ breaks: true, gfm: true });
 
-  // ---- 基础路径检测（本地 vs GitHub Pages）----
   function getBasePath() {
     var path = window.location.pathname;
-    // GitHub Pages: /zhengxin-math-prep/
     if (path.indexOf('zhengxin-math-prep') !== -1) {
       var idx = path.indexOf('zhengxin-math-prep');
       return path.substring(0, idx + 'zhengxin-math-prep'.length) + '/';
@@ -32,7 +26,6 @@
 
   var BASE = getBasePath();
 
-  // ---- frontmatter 解析（轻量正则，不引大库）----
   function parseFrontmatter(text) {
     var fm = {};
     var match = text.match(/^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/);
@@ -41,37 +34,21 @@
     lines.forEach(function (line) {
       var idx = line.indexOf(':');
       if (idx > 0) {
-        var key = line.slice(0, idx).trim();
-        var val = line.slice(idx + 1).trim();
-        fm[key] = val;
+        fm[line.slice(0, idx).trim()] = line.slice(idx + 1).trim();
       }
     });
     return { frontmatter: fm, body: match[2] };
   }
 
-  // ---- [[双链]] 渲染为可点击链接 ----
   function renderWikiLinks(html) {
     return html.replace(/\[\[([^\]]+)\]\]/g, function (match, link) {
       var text = link.trim();
-      var href = '#';
-      // 映射到教法骨架文件
-      if (text.indexOf('四步教学法') !== -1 || text.indexOf('自主学习') !== -1) {
-        href = BASE + '_教法骨架/自主学习四步教学法.md';
-      } else if (text.indexOf('降维打击') !== -1) {
-        href = BASE + '_教法骨架/降维打击策略.md';
-      } else if (text.indexOf('游戏化') !== -1) {
-        href = BASE + '_教法骨架/游戏化教学设计.md';
-      } else if (text.indexOf('评估') !== -1) {
-        href = BASE + '_教法骨架/学生评估标准.md';
-      } else {
-        href = BASE + text + '.md';
-      }
+      var href = BASE + text + '.md';
       var safeHref = href.replace(/'/g, "\\'");
       return '<a class="wiki-link" href="' + href + '" data-wiki="' + safeHref + '">' + text + '</a>';
     });
   }
 
-  // ---- KaTeX 自动渲染 ----
   function renderMath(container) {
     if (typeof renderMathInElement === 'function') {
       renderMathInElement(container, {
@@ -86,7 +63,6 @@
     }
   }
 
-  // ---- 折叠来源引用块 ----
   function setupCollapsibleQuotes(container) {
     var blockquotes = container.querySelectorAll('blockquote');
     blockquotes.forEach(function (bq) {
@@ -119,7 +95,6 @@
     });
   }
 
-  // ---- Vue App ----
   var app = createApp({
     setup: function () {
       var config = ref({ site: {}, grades: {} });
@@ -132,38 +107,24 @@
       var expandedGrades = ref([]);
       var expandedChapters = ref([]);
       var isDark = ref(false);
-      var showMethods = ref(false);
       var chaptersStatus = ref('');
 
       var metaLabels = {
         grade: '年级',
-        unit: '单元',
+        unit: '章节',
         knowledge: '知识点',
         source: '出处',
         difficulty: '难度',
         status: '状态',
-        date: '日期',
-        type: '类型',
-        last_sync: '同步日期',
-        source_date: '来源日期'
+        date: '日期'
       };
 
-      var methodFiles = [
-        { title: '自主学习四步教学法', file: '_教法骨架/自主学习四步教学法.md' },
-        { title: '降维打击策略', file: '_教法骨架/降维打击策略.md' },
-        { title: '游戏化教学设计', file: '_教法骨架/游戏化教学设计.md' },
-        { title: '学生评估标准', file: '_教法骨架/学生评估标准.md' }
-      ];
-
-      // ---- 计算属性：过滤后的年级（搜索功能）----
       var filteredGrades = computed(function () {
         var q = searchQuery.value.trim().toLowerCase();
         var grades = config.value.grades || {};
         if (!q) {
           var result = {};
-          Object.keys(grades).forEach(function (key) {
-            result[key] = grades[key];
-          });
+          Object.keys(grades).forEach(function (key) { result[key] = grades[key]; });
           return result;
         }
         var filtered = {};
@@ -189,7 +150,6 @@
         return filtered;
       });
 
-      // ---- 计算属性：元信息展示 ----
       var metaDisplay = computed(function () {
         if (!currentLesson.value || !currentLesson.value.frontmatter) return {};
         var fm = currentLesson.value.frontmatter;
@@ -202,7 +162,6 @@
         return out;
       });
 
-      // ---- 方法 ----
       function toggleGrade(key) {
         var idx = expandedGrades.value.indexOf(key);
         if (idx === -1) expandedGrades.value.push(key);
@@ -219,20 +178,6 @@
         if (expandedGrades.value.indexOf(key) === -1) {
           expandedGrades.value.push(key);
         }
-      }
-
-      function goMethod() {
-        showMethods.value = true;
-      }
-
-      function statusLabel(status) {
-        var map = {
-          '已备课': '✅',
-          '待备课': '📝',
-          '待核实': '⚠️',
-          '样板教案': '⭐'
-        };
-        return map[status] || '';
       }
 
       function toggleTheme() {
@@ -261,18 +206,15 @@
           var parsed = parseFrontmatter(text);
           currentLesson.value = { frontmatter: parsed.frontmatter };
 
-          // 渲染 Markdown → 双链替换 → 写入 DOM
           var html = marked.parse(parsed.body);
           html = renderWikiLinks(html);
           renderedHtml.value = html;
 
-          // 等 DOM 更新后渲染 KaTeX 和折叠引用
           await nextTick();
           var container = document.querySelector('.markdown-body');
           if (container) {
             renderMath(container);
             setupCollapsibleQuotes(container);
-            // 绑定 wiki 链接点击
             var wikiLinks = container.querySelectorAll('.wiki-link');
             wikiLinks.forEach(function (link) {
               link.addEventListener('click', function (e) {
@@ -298,10 +240,8 @@
         }
       }
 
-      // ---- 搜索监听：自动展开匹配项 ----
       watch(searchQuery, function (q) {
         if (q.trim()) {
-          // 搜索时自动展开所有年级
           Object.keys(config.value.grades || {}).forEach(function (key) {
             if (expandedGrades.value.indexOf(key) === -1) {
               expandedGrades.value.push(key);
@@ -310,9 +250,7 @@
         }
       });
 
-      // ---- 初始化 ----
       onMounted(async function () {
-        // 读取主题偏好
         try {
           var saved = localStorage.getItem('zx-theme');
           if (saved === 'dark') {
@@ -321,13 +259,11 @@
           }
         } catch (e) {}
 
-        // 加载 config.json
         try {
           var resp = await fetch(BASE + 'config.json?t=' + Date.now());
           if (!resp.ok) throw new Error('config.json 加载失败 (' + resp.status + ')');
           config.value = await resp.json();
           chaptersStatus.value = config.value.chapters_status || '';
-          // 默认展开第一个年级
           var keys = Object.keys(config.value.grades || {});
           if (keys.length > 0) {
             expandedGrades.value = [keys[0]];
@@ -348,17 +284,13 @@
         expandedGrades: expandedGrades,
         expandedChapters: expandedChapters,
         isDark: isDark,
-        showMethods: showMethods,
         chaptersStatus: chaptersStatus,
         metaLabels: metaLabels,
         metaDisplay: metaDisplay,
-        methodFiles: methodFiles,
         filteredGrades: filteredGrades,
         toggleGrade: toggleGrade,
         toggleChapter: toggleChapter,
         goGrade: goGrade,
-        goMethod: goMethod,
-        statusLabel: statusLabel,
         toggleTheme: toggleTheme,
         loadLesson: loadLesson,
         retryLoad: retryLoad
