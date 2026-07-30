@@ -130,6 +130,8 @@ body {
 
 .theme-toggle:hover { background: var(--bg-hover); }
 
+.menu-toggle { display: none; }
+
 /* ---- 主体布局 ---- */
 .main-layout {
   display: flex;
@@ -520,17 +522,57 @@ body {
 
 /* ---- 响应式 ---- */
 @media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--text);
+    flex-shrink: 0;
+  }
+  .menu-toggle:hover { background: var(--bg-hover); }
+  .menu-icon { line-height: 1; }
+
   .sidebar {
-    position: absolute;
-    width: 80%;
+    position: fixed;
+    left: 0;
+    top: 56px;
+    width: 280px;
+    max-width: 85vw;
     height: calc(100vh - 56px);
     z-index: 50;
     transform: translateX(-100%);
-    transition: transform 0.3s;
+    transition: transform 0.25s ease;
+    box-shadow: 2px 0 12px var(--shadow);
   }
   .sidebar.open { transform: translateX(0); }
-  .content { padding: 20px 16px; }
-  .search-box { max-width: 160px; }
-  .logo-text { font-size: 0.9rem; }
+
+  .sidebar-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    top: 56px;
+    background: rgba(0,0,0,0.3);
+    z-index: -1;
+  }
+  .sidebar.open .sidebar-backdrop { display: block; }
+
+  .content { padding: 16px; }
+  .search-box { max-width: 140px; }
+  .logo-text { font-size: 0.85rem; }
   .subtitle { display: none; }
+  .welcome { padding-top: 30px; }
+  .welcome h1 { font-size: 1.3rem; }
+  .welcome-cards { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .card { padding: 16px 10px; }
+  .markdown-body h1 { font-size: 1.4rem; }
+  .markdown-body h2 { font-size: 1.15rem; }
+  .markdown-body table { font-size: 0.78rem; }
+  .markdown-body th, .markdown-body td { padding: 6px 8px; }
 }

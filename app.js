@@ -76,6 +76,7 @@
       var expandedGrades = ref([]);
       var expandedChapters = ref([]);
       var isDark = ref(false);
+      var sidebarOpen = ref(false);
       var chaptersStatus = ref('');
 
       var metaLabels = {
@@ -131,6 +132,10 @@
         return out;
       });
 
+      function toggleSidebar() {
+        sidebarOpen.value = !sidebarOpen.value;
+      }
+
       function toggleGrade(key) {
         var idx = expandedGrades.value.indexOf(key);
         if (idx === -1) expandedGrades.value.push(key);
@@ -161,6 +166,7 @@
 
       async function loadLesson(filePath) {
         if (!filePath) return;
+        sidebarOpen.value = false;
         currentPath.value = filePath;
         loading.value = true;
         error.value = '';
@@ -252,6 +258,7 @@
         expandedGrades: expandedGrades,
         expandedChapters: expandedChapters,
         isDark: isDark,
+        sidebarOpen: sidebarOpen,
         chaptersStatus: chaptersStatus,
         metaLabels: metaLabels,
         metaDisplay: metaDisplay,
@@ -260,6 +267,7 @@
         toggleChapter: toggleChapter,
         goGrade: goGrade,
         toggleTheme: toggleTheme,
+        toggleSidebar: toggleSidebar,
         loadLesson: loadLesson,
         retryLoad: retryLoad
       };

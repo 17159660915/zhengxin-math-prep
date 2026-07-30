@@ -26,14 +26,18 @@
         >
         <span class="search-icon">🔍</span>
       </div>
+      <button class="menu-toggle" @click="toggleSidebar" title="菜单">
+        <span class="menu-icon">☰</span>
+      </button>
       <button class="theme-toggle" @click="toggleTheme" :title="isDark ? '切换亮色' : '切换暗色'">
         {{ isDark ? '☀️' : '🌙' }}
       </button>
     </header>
 
     <div class="main-layout">
-      <nav class="sidebar">
-        <div class="nav-section" v-for="(grade, gKey) in filteredGrades" :key="gKey">
+      <nav class="sidebar" :class="{ open: sidebarOpen }">
+            <div class="sidebar-backdrop" @click="sidebarOpen = false"></div>
+            <div class="nav-section" v-for="(grade, gKey) in filteredGrades" :key="gKey">
           <div
             class="nav-grade"
             :class="{ active: expandedGrades.includes(gKey) }"
