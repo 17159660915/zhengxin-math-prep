@@ -1,0 +1,735 @@
+{
+  "site": {
+    "title": "正心童学·初中数学思维题库",
+    "subtitle": "人教版 7-9 年级 · 思维训练",
+    "version": "1.0.0",
+    "last_updated": "2026-07-31"
+  },
+  "chapters_status": "",
+  "grades": {
+    "初一": {
+      "label": "初一",
+      "textbook": "人教版七年级上册（2024秋版）+ 下册（2025春版）",
+      "chapters": [
+        {
+          "id": "ch1",
+          "title": "第一章 有理数",
+          "semester": "上册",
+          "topics": [
+            {
+              "id": "1.1",
+              "title": "1.1 正数和负数",
+              "file": "problems/初一/1-1.md"
+            },
+            {
+              "id": "1.2",
+              "title": "1.2 有理数及其大小比较",
+              "file": "problems/初一/1-2.md"
+            }
+          ]
+        },
+        {
+          "id": "ch2",
+          "title": "第二章 有理数的运算",
+          "semester": "上册",
+          "topics": [
+            {
+              "id": "2.1",
+              "title": "2.1 有理数的加法与减法",
+              "file": "problems/初一/2-1.md"
+            },
+            {
+              "id": "2.2",
+              "title": "2.2 有理数的乘法与除法",
+              "file": "problems/初一/2-2.md"
+            },
+            {
+              "id": "2.3",
+              "title": "2.3 有理数的乘方",
+              "file": "problems/初一/2-3.md"
+            }
+          ]
+        },
+        {
+          "id": "ch3",
+          "title": "第三章 代数式",
+          "semester": "上册",
+          "topics": [
+            {
+              "id": "3.1",
+              "title": "3.1 列代数式表示数量关系",
+              "file": "problems/初一/3-1.md"
+            },
+            {
+              "id": "3.2",
+              "title": "3.2 代数式的值",
+              "file": "problems/初一/3-2.md"
+            }
+          ]
+        },
+        {
+          "id": "ch4",
+          "title": "第四章 整式的加减",
+          "semester": "上册",
+          "topics": [
+            {
+              "id": "4.1",
+              "title": "4.1 整式",
+              "file": "problems/初一/4-1.md"
+            },
+            {
+              "id": "4.2",
+              "title": "4.2 整式的加法与减法",
+              "file": "problems/初一/4-2.md"
+            }
+          ]
+        },
+        {
+          "id": "ch5",
+          "title": "第五章 一元一次方程",
+          "semester": "上册",
+          "topics": [
+            {
+              "id": "5.1",
+              "title": "5.1 方程",
+              "file": "problems/初一/5-1.md"
+            },
+            {
+              "id": "5.2",
+              "title": "5.2 解一元一次方程",
+              "file": "problems/初一/5-2.md"
+            },
+            {
+              "id": "5.3",
+              "title": "5.3 实际问题与一元一次方程",
+              "file": "problems/初一/5-3.md"
+            }
+          ]
+        },
+        {
+          "id": "ch6",
+          "title": "第六章 几何图形初步",
+          "semester": "上册",
+          "topics": [
+            {
+              "id": "6.1",
+              "title": "6.1 几何图形",
+              "file": "problems/初一/6-1.md"
+            },
+            {
+              "id": "6.2",
+              "title": "6.2 直线、射线、线段",
+              "file": "problems/初一/6-2.md"
+            },
+            {
+              "id": "6.3",
+              "title": "6.3 角",
+              "file": "problems/初一/6-3.md"
+            }
+          ]
+        },
+        {
+          "id": "ch7",
+          "title": "第七章 相交线与平行线",
+          "semester": "下册",
+          "topics": [
+            {
+              "id": "7.1",
+              "title": "7.1 相交线",
+              "file": "problems/初一/7-1.md"
+            },
+            {
+              "id": "7.2",
+              "title": "7.2 平行线",
+              "file": "problems/初一/7-2.md"
+            },
+            {
+              "id": "7.3",
+              "title": "7.3 定义、命题、定理",
+              "file": "problems/初一/7-3.md"
+            },
+            {
+              "id": "7.4",
+              "title": "7.4 平移",
+              "file": "problems/初一/7-4.md"
+            }
+          ]
+        },
+        {
+          "id": "ch8",
+          "title": "第八章 实数",
+          "semester": "下册",
+          "topics": [
+            {
+              "id": "8.1",
+              "title": "8.1 平方根",
+              "file": "problems/初一/8-1.md"
+            },
+            {
+              "id": "8.2",
+              "title": "8.2 立方根",
+              "file": "problems/初一/8-2.md"
+            },
+            {
+              "id": "8.3",
+              "title": "8.3 实数及其简单运算",
+              "file": "problems/初一/8-3.md"
+            }
+          ]
+        },
+        {
+          "id": "ch9",
+          "title": "第九章 平面直角坐标系",
+          "semester": "下册",
+          "topics": [
+            {
+              "id": "9.1",
+              "title": "9.1 用坐标描述平面内点的位置",
+              "file": "problems/初一/9-1.md"
+            },
+            {
+              "id": "9.2",
+              "title": "9.2 坐标方法的简单应用",
+              "file": "problems/初一/9-2.md"
+            }
+          ]
+        },
+        {
+          "id": "ch10",
+          "title": "第十章 二元一次方程组",
+          "semester": "下册",
+          "topics": [
+            {
+              "id": "10.1",
+              "title": "10.1 二元一次方程组的概念",
+              "file": "problems/初一/10-1.md"
+            },
+            {
+              "id": "10.2",
+              "title": "10.2 消元——解二元一次方程组",
+              "file": "problems/初一/10-2.md"
+            },
+            {
+              "id": "10.3",
+              "title": "10.3 实际问题与二元一次方程组",
+              "file": "problems/初一/10-3.md"
+            }
+          ]
+        },
+        {
+          "id": "ch11",
+          "title": "第十一章 不等式与不等式组",
+          "semester": "下册",
+          "topics": [
+            {
+              "id": "11.1",
+              "title": "11.1 不等式",
+              "file": "problems/初一/11-1.md"
+            },
+            {
+              "id": "11.2",
+              "title": "11.2 一元一次不等式",
+              "file": "problems/初一/11-2.md"
+            },
+            {
+              "id": "11.3",
+              "title": "11.3 一元一次不等式组",
+              "file": "problems/初一/11-3.md"
+            }
+          ]
+        },
+        {
+          "id": "ch12",
+          "title": "第十二章 数据的收集、整理与描述",
+          "semester": "下册",
+          "topics": [
+            {
+              "id": "12.1",
+              "title": "12.1 统计调查",
+              "file": "problems/初一/12-1.md"
+            },
+            {
+              "id": "12.2",
+              "title": "12.2 用统计图描述数据",
+              "file": "problems/初一/12-2.md"
+            }
+          ]
+        }
+      ]
+    },
+    "初二": {
+      "label": "初二",
+      "textbook": "人教版八年级上册（2025秋版）+ 下册（2026春版）",
+      "chapters": [
+        {
+          "id": "ch13",
+          "title": "第十三章 三角形",
+          "semester": "上册",
+          "topics": [
+            {
+              "id": "13.1",
+              "title": "13.1 三角形的概念",
+              "file": "problems/初二/13-1.md"
+            },
+            {
+              "id": "13.2",
+              "title": "13.2 与三角形有关的线段",
+              "file": "problems/初二/13-2.md"
+            },
+            {
+              "id": "13.3",
+              "title": "13.3 三角形的内角与外角",
+              "file": "problems/初二/13-3.md"
+            }
+          ]
+        },
+        {
+          "id": "ch14",
+          "title": "第十四章 全等三角形",
+          "semester": "上册",
+          "topics": [
+            {
+              "id": "14.1",
+              "title": "14.1 全等三角形及其性质",
+              "file": "problems/初二/14-1.md"
+            },
+            {
+              "id": "14.2",
+              "title": "14.2 三角形全等的判定",
+              "file": "problems/初二/14-2.md"
+            },
+            {
+              "id": "14.3",
+              "title": "14.3 角的平分线",
+              "file": "problems/初二/14-3.md"
+            }
+          ]
+        },
+        {
+          "id": "ch15",
+          "title": "第十五章 轴对称",
+          "semester": "上册",
+          "topics": [
+            {
+              "id": "15.1",
+              "title": "15.1 图形的轴对称",
+              "file": "problems/初二/15-1.md"
+            },
+            {
+              "id": "15.2",
+              "title": "15.2 画轴对称的图形",
+              "file": "problems/初二/15-2.md"
+            },
+            {
+              "id": "15.3",
+              "title": "15.3 等腰三角形",
+              "file": "problems/初二/15-3.md"
+            }
+          ]
+        },
+        {
+          "id": "ch16",
+          "title": "第十六章 整式的乘法",
+          "semester": "上册",
+          "topics": [
+            {
+              "id": "16.1",
+              "title": "16.1 幂的运算",
+              "file": "problems/初二/16-1.md"
+            },
+            {
+              "id": "16.2",
+              "title": "16.2 整式的乘法",
+              "file": "problems/初二/16-2.md"
+            },
+            {
+              "id": "16.3",
+              "title": "16.3 乘法公式",
+              "file": "problems/初二/16-3.md"
+            }
+          ]
+        },
+        {
+          "id": "ch17",
+          "title": "第十七章 因式分解",
+          "semester": "上册",
+          "topics": [
+            {
+              "id": "17.1",
+              "title": "17.1 用提公因式法分解因式",
+              "file": "problems/初二/17-1.md"
+            },
+            {
+              "id": "17.2",
+              "title": "17.2 用公式法分解因式",
+              "file": "problems/初二/17-2.md"
+            }
+          ]
+        },
+        {
+          "id": "ch18",
+          "title": "第十八章 分式",
+          "semester": "上册",
+          "topics": [
+            {
+              "id": "18.1",
+              "title": "18.1 分式及其基本性质",
+              "file": "problems/初二/18-1.md"
+            },
+            {
+              "id": "18.2",
+              "title": "18.2 分式的乘法与除法",
+              "file": "problems/初二/18-2.md"
+            },
+            {
+              "id": "18.3",
+              "title": "18.3 分式的加法与减法",
+              "file": "problems/初二/18-3.md"
+            },
+            {
+              "id": "18.4",
+              "title": "18.4 整数指数幂",
+              "file": "problems/初二/18-4.md"
+            },
+            {
+              "id": "18.5",
+              "title": "18.5 分式方程",
+              "file": "problems/初二/18-5.md"
+            }
+          ]
+        },
+        {
+          "id": "ch19",
+          "title": "第十九章 二次根式",
+          "semester": "下册",
+          "topics": [
+            {
+              "id": "19.1",
+              "title": "19.1 二次根式及其性质",
+              "file": "problems/初二/19-1.md"
+            },
+            {
+              "id": "19.2",
+              "title": "19.2 二次根式的乘法与除法",
+              "file": "problems/初二/19-2.md"
+            },
+            {
+              "id": "19.3",
+              "title": "19.3 二次根式的加法与减法",
+              "file": "problems/初二/19-3.md"
+            }
+          ]
+        },
+        {
+          "id": "ch20",
+          "title": "第二十章 勾股定理",
+          "semester": "下册",
+          "topics": [
+            {
+              "id": "20.1",
+              "title": "20.1 勾股定理及其应用",
+              "file": "problems/初二/20-1.md"
+            },
+            {
+              "id": "20.2",
+              "title": "20.2 勾股定理的逆定理及其应用",
+              "file": "problems/初二/20-2.md"
+            }
+          ]
+        },
+        {
+          "id": "ch21",
+          "title": "第二十一章 四边形",
+          "semester": "下册",
+          "topics": [
+            {
+              "id": "21.1",
+              "title": "21.1 四边形及多边形",
+              "file": "problems/初二/21-1.md"
+            },
+            {
+              "id": "21.2",
+              "title": "21.2 平行四边形",
+              "file": "problems/初二/21-2.md"
+            },
+            {
+              "id": "21.3",
+              "title": "21.3 特殊的平行四边形",
+              "file": "problems/初二/21-3.md"
+            }
+          ]
+        },
+        {
+          "id": "ch22",
+          "title": "第二十二章 函数",
+          "semester": "下册",
+          "topics": [
+            {
+              "id": "22.1",
+              "title": "22.1 函数的概念",
+              "file": "problems/初二/22-1.md"
+            },
+            {
+              "id": "22.2",
+              "title": "22.2 函数的表示",
+              "file": "problems/初二/22-2.md"
+            }
+          ]
+        },
+        {
+          "id": "ch23",
+          "title": "第二十三章 一次函数",
+          "semester": "下册",
+          "topics": [
+            {
+              "id": "23.1",
+              "title": "23.1 一次函数的概念",
+              "file": "problems/初二/23-1.md"
+            },
+            {
+              "id": "23.2",
+              "title": "23.2 一次函数的图象和性质",
+              "file": "problems/初二/23-2.md"
+            },
+            {
+              "id": "23.3",
+              "title": "23.3 一次函数与方程(组)不等式",
+              "file": "problems/初二/23-3.md"
+            },
+            {
+              "id": "23.4",
+              "title": "23.4 实际问题与一次函数",
+              "file": "problems/初二/23-4.md"
+            }
+          ]
+        },
+        {
+          "id": "ch24",
+          "title": "第二十四章 数据的分析",
+          "semester": "下册",
+          "topics": [
+            {
+              "id": "24.1",
+              "title": "24.1 数据的集中趋势",
+              "file": "problems/初二/24-1.md"
+            },
+            {
+              "id": "24.2",
+              "title": "24.2 数据的离散程度",
+              "file": "problems/初二/24-2.md"
+            },
+            {
+              "id": "24.3",
+              "title": "24.3 数据的四分位数",
+              "file": "problems/初二/24-3.md"
+            },
+            {
+              "id": "24.4",
+              "title": "24.4 数据的分组",
+              "file": "problems/初二/24-4.md"
+            }
+          ]
+        }
+      ]
+    },
+    "初三": {
+      "label": "初三",
+      "textbook": "人教版九年级上册 + 下册（2013版，新版待发布）",
+      "chapters": [
+        {
+          "id": "ch25",
+          "title": "第二十一章 一元二次方程",
+          "semester": "上册",
+          "topics": [
+            {
+              "id": "21.1",
+              "title": "21.1 一元二次方程",
+              "file": "problems/初三/21-1.md"
+            },
+            {
+              "id": "21.2",
+              "title": "21.2 解一元二次方程",
+              "file": "problems/初三/21-2.md"
+            },
+            {
+              "id": "21.3",
+              "title": "21.3 实际问题与一元二次方程",
+              "file": "problems/初三/21-3.md"
+            }
+          ]
+        },
+        {
+          "id": "ch26",
+          "title": "第二十二章 二次函数",
+          "semester": "上册",
+          "topics": [
+            {
+              "id": "22.1",
+              "title": "22.1 二次函数的图象和性质",
+              "file": "problems/初三/22-1.md"
+            },
+            {
+              "id": "22.2",
+              "title": "22.2 二次函数与一元二次方程",
+              "file": "problems/初三/22-2.md"
+            },
+            {
+              "id": "22.3",
+              "title": "22.3 实际问题与二次函数",
+              "file": "problems/初三/22-3.md"
+            }
+          ]
+        },
+        {
+          "id": "ch27",
+          "title": "第二十三章 旋转",
+          "semester": "上册",
+          "topics": [
+            {
+              "id": "23.1",
+              "title": "23.1 图形的旋转",
+              "file": "problems/初三/23-1.md"
+            },
+            {
+              "id": "23.2",
+              "title": "23.2 中心对称",
+              "file": "problems/初三/23-2.md"
+            },
+            {
+              "id": "23.3",
+              "title": "23.3 课题学习 图案设计",
+              "file": "problems/初三/23-3.md"
+            }
+          ]
+        },
+        {
+          "id": "ch28",
+          "title": "第二十四章 圆",
+          "semester": "上册",
+          "topics": [
+            {
+              "id": "24.1",
+              "title": "24.1 圆的有关性质",
+              "file": "problems/初三/24-1.md"
+            },
+            {
+              "id": "24.2",
+              "title": "24.2 点和圆、直线和圆的位置关系",
+              "file": "problems/初三/24-2.md"
+            },
+            {
+              "id": "24.3",
+              "title": "24.3 正多边形和圆",
+              "file": "problems/初三/24-3.md"
+            },
+            {
+              "id": "24.4",
+              "title": "24.4 弧长和扇形面积",
+              "file": "problems/初三/24-4.md"
+            }
+          ]
+        },
+        {
+          "id": "ch29",
+          "title": "第二十五章 概率初步",
+          "semester": "上册",
+          "topics": [
+            {
+              "id": "25.1",
+              "title": "25.1 随机事件与概率",
+              "file": "problems/初三/25-1.md"
+            },
+            {
+              "id": "25.2",
+              "title": "25.2 用列举法求概率",
+              "file": "problems/初三/25-2.md"
+            },
+            {
+              "id": "25.3",
+              "title": "25.3 用频率估计概率",
+              "file": "problems/初三/25-3.md"
+            }
+          ]
+        },
+        {
+          "id": "ch30",
+          "title": "第二十六章 反比例函数",
+          "semester": "下册",
+          "topics": [
+            {
+              "id": "26.1",
+              "title": "26.1 反比例函数",
+              "file": "problems/初三/26-1.md"
+            },
+            {
+              "id": "26.2",
+              "title": "26.2 实际问题与反比例函数",
+              "file": "problems/初三/26-2.md"
+            }
+          ]
+        },
+        {
+          "id": "ch31",
+          "title": "第二十七章 相似",
+          "semester": "下册",
+          "topics": [
+            {
+              "id": "27.1",
+              "title": "27.1 图形的相似",
+              "file": "problems/初三/27-1.md"
+            },
+            {
+              "id": "27.2",
+              "title": "27.2 相似三角形",
+              "file": "problems/初三/27-2.md"
+            },
+            {
+              "id": "27.3",
+              "title": "27.3 位似",
+              "file": "problems/初三/27-3.md"
+            }
+          ]
+        },
+        {
+          "id": "ch32",
+          "title": "第二十八章 锐角三角函数",
+          "semester": "下册",
+          "topics": [
+            {
+              "id": "28.1",
+              "title": "28.1 锐角三角函数",
+              "file": "problems/初三/28-1.md"
+            },
+            {
+              "id": "28.2",
+              "title": "28.2 解直角三角形",
+              "file": "problems/初三/28-2.md"
+            }
+          ]
+        },
+        {
+          "id": "ch33",
+          "title": "第二十九章 投影与视图",
+          "semester": "下册",
+          "topics": [
+            {
+              "id": "29.1",
+              "title": "29.1 投影",
+              "file": "problems/初三/29-1.md"
+            },
+            {
+              "id": "29.2",
+              "title": "29.2 三视图",
+              "file": "problems/初三/29-2.md"
+            },
+            {
+              "id": "29.3",
+              "title": "29.3 课题学习 制作立体模型",
+              "file": "problems/初三/29-3.md"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

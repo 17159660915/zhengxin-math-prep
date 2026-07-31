@@ -187,6 +187,21 @@ body {
 .menu-toggle:hover { background: var(--bg-hover); }
 .menu-icon { line-height: 1; }
 
+.mode-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--text);
+  flex-shrink: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+.mode-toggle:hover { background: var(--bg-hover); transform: scale(1.05); }
+.mode-toggle:active { transform: scale(0.95); }
+
 .theme-toggle {
   background: none;
   border: 1px solid var(--border);

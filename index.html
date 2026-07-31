@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>正心童学·初中数学知识点汇总</title>
+  <title>{{ mode === "knowledge" ? "正心童学·初中数学知识点汇总" : "正心童学·初中数学思维题库" }}</title>
   <link rel="stylesheet" href="styles.css">
   <script src="assets/vue.global.prod.js?v=1.4.2"></script>
   <script src="assets/marked.min.js?v=1.4.2"></script>
@@ -15,18 +15,19 @@
       <div class="logo">
         <span class="logo-icon">🦐</span>
         <div>
-          <h1 class="logo-text">正心童学·初中数学知识点汇总</h1>
-          <p class="subtitle">人教版 7-9 年级 · 知识点查询</p>
+          <h1 class="logo-text">{{ mode === 'knowledge' ? '正心童学·初中数学知识点汇总' : '正心童学·初中数学思维题库' }}</h1>
+          <p class="subtitle">{{ mode === 'knowledge' ? '人教版 7-9 年级 · 知识点查询' : '人教版 7-9 年级 · 思维训练' }}</p>
         </div>
       </div>
       <div class="search-box">
         <input
           type="text"
           v-model="searchQuery"
-          placeholder="搜索章节 / 知识点…"
+          :placeholder="mode === 'knowledge' ? '搜索章节 / 知识点…' : '搜索章节 / 题目…'"
         >
         <span class="search-icon">🔍</span>
       </div>
+      <button class="mode-toggle" @click="toggleMode" title="切换模式">{{ mode === "knowledge" ? "📝" : "📖" }}</button>
       <button class="menu-toggle" @click="toggleSidebar" title="菜单">
         <span class="menu-icon">☰</span>
       </button>

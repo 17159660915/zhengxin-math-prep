@@ -77,6 +77,7 @@
       var expandedChapters = ref([]);
       var isDark = ref(false);
       var sidebarOpen = ref(false);
+      var mode = ref("knowledge");
       var chaptersStatus = ref('');
 
       var metaLabels = {
@@ -134,6 +135,11 @@
 
       function toggleSidebar() {
         sidebarOpen.value = !sidebarOpen.value;
+      }
+
+      function toggleMode() {
+        mode.value = mode.value === "knowledge" ? "problems" : "knowledge";
+        loadConfig();
       }
 
       function toggleGrade(key) {
@@ -214,6 +220,26 @@
         }
       }
 
+      async function loadConfig() {
+        var configFile = mode.value === "knowledge" ? "config.json" : "problems.json";
+        try {
+          var resp = await fetch(BASE + configFile + "?t=" + Date.now());
+          if (!resp.ok) throw new Error(configFile + " 加载失败 (" + resp.status + ")");
+          config.value = await resp.json();
+          chaptersStatus.value = config.value.chapters_status || "";
+          var keys = Object.keys(config.value.grades || {});
+          if (keys.length > 0) {
+            expandedGrades.value = [keys[0]];
+          }
+          expandedChapters.value = [];
+          searchQuery.value = "";
+          currentLesson.value = null;
+          error.value = "";
+        } catch (err) {
+          error.value = "加载配置失败：" + err.message;
+        }
+      }
+
       watch(searchQuery, function (q) {
         if (q.trim()) {
           Object.keys(config.value.grades || {}).forEach(function (key) {
@@ -248,18 +274,7 @@
           }
         });
 
-        try {
-          var resp = await fetch(BASE + 'config.json?t=' + Date.now());
-          if (!resp.ok) throw new Error('config.json 加载失败 (' + resp.status + ')');
-          config.value = await resp.json();
-          chaptersStatus.value = config.value.chapters_status || '';
-          var keys = Object.keys(config.value.grades || {});
-          if (keys.length > 0) {
-            expandedGrades.value = [keys[0]];
-          }
-        } catch (err) {
-          error.value = '加载配置失败：' + err.message;
-        }
+        await loadConfig();
       });
 
       return {
@@ -274,6 +289,7 @@
         expandedChapters: expandedChapters,
         isDark: isDark,
         sidebarOpen: sidebarOpen,
+        mode: mode,
         chaptersStatus: chaptersStatus,
         metaLabels: metaLabels,
         metaDisplay: metaDisplay,
@@ -283,6 +299,7 @@
         goGrade: goGrade,
         toggleTheme: toggleTheme,
         toggleSidebar: toggleSidebar,
+        toggleMode: toggleMode,
         loadLesson: loadLesson,
         retryLoad: retryLoad
       };
