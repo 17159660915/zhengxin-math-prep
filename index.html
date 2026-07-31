@@ -9,6 +9,7 @@
   <script src="assets/marked.min.js?v=1.4.2"></script>
 </head>
 <body>
+  <div class="scroll-progress" id="scrollProgress"></div>
   <div id="app">
     <header class="top-bar">
       <div class="logo">
@@ -83,17 +84,17 @@
             <div class="card" @click="goGrade('初一')">
               <span class="card-icon">📖</span>
               <span>初一数学</span>
-              <span class="card-sub">12章 · 2024秋版</span>
+              <span class="card-sub">12章 · 32知识点</span>
             </div>
             <div class="card" @click="goGrade('初二')">
               <span class="card-icon">📐</span>
               <span>初二数学</span>
-              <span class="card-sub">12章 · 2025秋版</span>
+              <span class="card-sub">12章 · 37知识点</span>
             </div>
             <div class="card" @click="goGrade('初三')">
               <span class="card-icon">📊</span>
               <span>初三数学</span>
-              <span class="card-sub">9章 · 2013版</span>
+              <span class="card-sub">9章 · 26知识点</span>
             </div>
           </div>
           <div class="notice" v-if="chaptersStatus">
@@ -120,6 +121,7 @@
         </article>
       </main>
     </div>
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="返回顶部">↑</button>
   </div>
   <script src="app.js?v=1.4.2"></script>
 </body>

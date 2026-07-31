@@ -233,6 +233,21 @@
           }
         } catch (e) {}
 
+        // 滚动进度条
+        window.addEventListener('scroll', function () {
+          var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+          var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+          var progress = document.getElementById('scrollProgress');
+          if (progress) {
+            progress.style.width = (scrollTop / scrollHeight * 100) + '%';
+          }
+          var btn = document.getElementById('backToTop');
+          if (btn) {
+            if (scrollTop > 300) btn.classList.add('visible');
+            else btn.classList.remove('visible');
+          }
+        });
+
         try {
           var resp = await fetch(BASE + 'config.json?t=' + Date.now());
           if (!resp.ok) throw new Error('config.json 加载失败 (' + resp.status + ')');
