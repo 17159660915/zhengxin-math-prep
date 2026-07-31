@@ -64,6 +64,44 @@
     });
   }
 
+  function setupProblemCards(container) {
+    var h2s = container.querySelectorAll('h2');
+    var hasProblem = false;
+    h2s.forEach(function (h2) {
+      if (/第\d+题/.test(h2.textContent)) hasProblem = true;
+    });
+    if (!hasProblem) return;
+
+    var children = [];
+    container.childNodes.forEach(function (c) {
+      if (c.nodeType === 1) children.push(c);
+    });
+    container.innerHTML = '';
+
+    var currentCard = null;
+    children.forEach(function (el) {
+      if (el.tagName === 'H2' && /第\d+题/.test(el.textContent)) {
+        currentCard = document.createElement('div');
+        currentCard.className = 'problem-card';
+        container.appendChild(currentCard);
+        var badge = document.createElement('div');
+        badge.className = 'problem-number';
+        badge.textContent = el.textContent;
+        currentCard.appendChild(badge);
+      } else if (currentCard) {
+        var strong = el.tagName === 'P' ? el.querySelector('strong') : null;
+        if (strong && strong.textContent.trim() === '解析：') {
+          var sol = document.createElement('div');
+          sol.className = 'problem-solution';
+          sol.innerHTML = el.innerHTML;
+          currentCard.appendChild(sol);
+        } else {
+          currentCard.appendChild(el.cloneNode(true));
+        }
+      }
+    });
+  }
+
   var app = createApp({
     setup: function () {
       var config = ref({ site: {}, grades: {} });
@@ -195,6 +233,7 @@
           var container = document.querySelector('.markdown-body');
           if (container) {
             setupModuleSections(container);
+            setupProblemCards(container);
             var wikiLinks = container.querySelectorAll('.wiki-link');
             wikiLinks.forEach(function (link) {
               link.addEventListener('click', function (e) {
